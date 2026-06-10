@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Digital Portfolio | Nhập môn Công nghệ số & AI</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header / navbar */
+        .navbar {
+            background: white;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 1rem 0;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e293b;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        /* sections */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #e2edf2;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+        }
+        /* intro card */
+        .intro-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid #eef2ff;
+        }
+        .intro-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(145deg, #e0e7ff, #c7d2fe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1e3a8a;
+        }
+        .intro-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+        /* projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .project-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.6rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.25s ease;
+            border: 1px solid #eef2ff;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
+        }
+        .project-icon {
+            font-size: 2rem;
+            background: #eef2ff;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            margin-bottom: 1.2rem;
+            color: #2563eb;
+        }
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .project-sub {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 1rem;
+            letter-spacing: 0.3px;
+        }
+        .project-meta {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2563eb;
+            background: #eff6ff;
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+        .demo-content {
+            background: #f9f9ff;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            border-left: 3px solid #3b82f6;
+        }
+        .img-mock {
+            background: #eef2ff;
+            border-radius: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            font-size: 0.8rem;
+            color: #1f2937;
+            text-align: center;
+        }
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1f2937;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: 0.6rem;
+            margin-right: 0.5rem;
+        }
+        .btn-link i {
+            font-size: 0.8rem;
+        }
+        .btn-link:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #f1f5f9;
+        }
+        .reflection-box {
+            background: #fefce8;
+            border-left: 6px solid #eab308;
+            padding: 1.8rem;
+            border-radius: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #4b5563;
+            font-size: 0.8rem;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+        @media (max-width: 700px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+        .responsibility-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .responsibility-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+        .responsibility-list li i {
+            color: #10b981;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo"><i class="fas fa-laptop-code"></i> ĐứcKhuê·Portfolio</div>
+        <ul class="nav-links">
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#projects">Bài tập</a></li>
+            <li><a href="#reflection">Tổng kết</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <!-- GIỚI THIỆU - About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">🌸 Giới thiệu</div>
+            <div class="intro-card">
+                <div class="intro-flex">
+                    <div class="avatar-placeholder">
+<img src="kazu.png" alt="Mô tả hình ảnh của tôi" style="max-width: 100%; height: auto; border-radius:100%;">
+                    </div>
+                    <div class="intro-text">
+                        <h1>Đào Đức Khuê</h1>
+                        <p class="badge">Điều khiển thông minh và tự động hóa - Khoa FATE</p>
+                        <p style="margin-top: 12px;">Xin chào! Mình là sinh viên năm nhất, hiện đang học lớp BICA2025. Portfolio này tổng hợp các dự án nhỏ từ môn <strong>Nhập môn Công nghệ số & Ứng dụng Trí tuệ nhân tạo</strong>. Mục tiêu: xây dựng hồ sơ năng lực số, thể hiện kỹ năng quản lý, tìm kiếm học thuật, prompt engineering, hợp tác nhóm và sáng tạo nội dung bằng AI. Cảm ơn mọi người đã ghé thăm!</p>
+                        <div style="margin-top: 12px; display: flex; gap: 12px; flex-wrap: wrap;">
+                                                   </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CÁC BÀI TẬP (Bài 1 -> Bài 6) -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">📌 Hệ thống bài tập (Bài 1–6)</div>
+            <div class="projects-grid">
+                
+                <!-- BÀI 1: Thao tác cơ bản với tập tin & thư mục -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-folder-tree"></i></div>
+                    <div class="project-title">Bài 1: Thao tác tập tin & thư mục</div>
+                    <div class="project-meta">Mục 1.4 - Quản lý dữ liệu cá nhân</div>
+                    <p><strong>🎯 Mục tiêu:</strong> Thực hành tổ chức, tạo, sao chép và quản lý cấu trúc thư mục học tập hiệu quả. Thiết lập hệ thống lưu trữ khoa học cho toàn bộ học kỳ, dễ dàng tìm kiếm
+và sao lưu.
+</p>
+                    <div class="demo-content">
+                        <strong>📁 Quá trình thực hiện:</strong><br>
+                        - Tạo cây thư mục: <code>HK2_AI/</code> gồm <code>BaiTap, TaiLieu, DoAn</code>.<br>
+                        - Sử dụng lệnh <code>mkdir, touch, cp, mv</code> trên terminal (Git Bash).<br>
+                        - Phân loại file .pdf, .docx theo chủ đề.<br>
+                        ✅ <strong>Sản phẩm:</strong> Ảnh chụp cấu trúc thư mục & log thao tác.
+                    </div>
+                    <div class="img-mock">
+     <img src="Screenshot 2026-06-08 023858.png" alt="Mô tả hình ảnh của tôi" style="max-width: 100%; height: auto;&gt;
+                        &lt;i class=" fas="" fa-image"="">
+                    </div>
+                    <div>
+
+<a href="BÁO CÁO KẾT QUẢ BÀI THỰC HÀNH QUẢN LÝ TỆP VÀ THƯ MỤC TRÊN WINDOWS.pdf" class="btn-link" download; return false;"><i class="fas fa-file-pdf"></i> Xem báo cáo (PDF)</a>
+<a href="Recording 2026-03-08 210000.mp4" class="btn-link" download; return false;"> Video minh họa</a>
+                    </div>
+                </div>
+
+                <!-- BÀI 2: Tìm kiếm & đánh giá thông tin học thuật (toán tử nâng cao, bảng đánh giá) -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-search"></i></div>
+                    <div class="project-title">Bài 2: Tìm kiếm học thuật & đánh giá nguồn tin</div>
+                    <div class="project-meta">Mục 2.4 - Toán tử nâng cao</div>
+                    <p><strong>🎯 Mục tiêu:</strong> Sử dụng Google Scholar, PubMed với toán tử <code>intitle:, filetype:pdf, AND/OR</code>, đánh giá độ tin cậy của tài liệu.</p>
+                    <div class="demo-content">
+                        <strong>🔍 Chiến lược tìm kiếm:</strong> <code>"trí tuệ nhân tạo" AND ("giáo dục" OR "học tập") filetype:pdf</code> → 15 bài báo chất lượng.<br>
+                        <strong>📊 Bảng đánh giá nguồn tin (5 tiêu chí):</strong>
+                        <table style="margin-top: 8px;">
+                            <tr><th>Tiêu chí</th><th>Bài báo A</th><th>Website B</th></tr>
+                            <tr><td>Uy tín tác giả</td><td>✅ GS.TS (trích dẫn cao)</td><td>⚠️ Không rõ</td></tr>
+                            <tr><td>Ngày xuất bản</td><td>2023</td><td>2019</td></tr>
+                            <tr><td>Trích dẫn</td><td>42 lần</td><td>0</td></tr>
+                            <tr><td>Mục đích</td><td>Học thuật</td><td>Thương mại</td></tr>
+			    <tr><td>Đánh giá</td><td>rất cao</td><td>Trung bình</td></tr>
+                        </table>
+                    </div>
+                    <div><a href="bài 2.pdf" class="btn-link" download; return false;"><i class="fas fa-table"></i> Xem bảng tổng hợp</a></div>
+                </div>
+
+                <!-- BÀI 3: Viết Prompt hiệu quả (so sánh prompt đầu và cải tiến) -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-comment-dots"></i></div>
+                    <div class="project-title">Bài 3: Prompt Engineering cho học tập</div>
+                    <div class="project-meta">Mục 3.4 - Tối ưu tương tác AI</div>
+                    <p><strong>🎯 Mục tiêu:</strong> So sánh prompt cơ bản với prompt cải tiến theo kỹ thuật R-T-F (Vai trò - Ngữ cảnh - Định dạng).</p>
+                    <div class="demo-content">
+                        <strong>✖️ Prompt đầu:</strong> "Hãy giải thích học máy" <br>
+			 <strong>✖️ Prompt cải tiến:</strong> "Giải thích Học máy dễ hiểu cho sinh viên năm
+nhất, có ví dụ minh họa." <br>
+                        <strong>✔️ Prompt cải tiến:</strong> "Bạn là chuyên gia AI. Hãy giải thích học máy có giám sát cho sinh viên năm nhất. Sử dụng ví dụ phân loại email rác và cung cấp đoạn code Python giả định. Trình bày dưới dạng bullet point."<br>
+                        <strong>📢 Kết quả từ AI (ChatGPT):</strong> Đoạn trả lời chi tiết, có cấu trúc, code mẫu sklearn, ví dụ trực quan.
+                    </div>
+                    <div class="img-mock"><i class="fas fa-robot"></i> AI output mẫu: "Học có giám sát sử dụng nhãn dữ liệu, như phân loại thư rác..." </div>
+                    <div><a href="BÁO CÁO TỔNG QUAN PROMT.pdf" class="btn-link" download; return false;"><i class="fas fa-code-branch"></i> So sánh chi tiết</a></div>
+                </div>
+
+                <!-- BÀI 4: Công cụ hợp tác trực tuyến cho dự án nhóm -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-users"></i></div>
+                    <div class="project-title">Bài 4: Hợp tác nhóm & quản lý dự án</div>
+                    <div class="project-meta">Mục 4.4 - Công cụ cộng tác</div>
+                    <p><strong>🎯 Mục tiêu:</strong> Sử dụng Trello/Microsoft Teams, phân công nhiệm vụ và phối hợp real-time cho dự án nhóm.</p>
+                    <div class="demo-content">
+                        <strong>🗂️ Minh chứng: </strong>Bảng Kanban Trello "Dự án Nghiên cứu AI trong Giáo dục"<br>
+                        - Cột: Backlog, Đang làm, Đã hoàn thành + nhãn thành viên.<br>
+                        - Tích hợp Google Drive chia sẻ tài liệu và lịch họp qua Calendar.<br>
+                        ✅ <strong>Kết quả:</strong> Hoàn thành báo cáo đúng hạn, mỗi thành viên đóng góp qua comment.
+                    </div>
+                    <div class="img-mock"><i class="fab fa-trello"></i> Ảnh chụp board Trello: 3 cột, 8 thẻ nhiệm vụ, có gán thành viên.</div>
+                    <div><a href="BÁO CÁO CÁ NHÂN.pdf" class="btn-link" download; return false;"><i class="fas fa-link"></i> Xem workspace mẫu</a></div>
+                </div>
+
+                <!-- BÀI 5: AI tạo sinh hỗ trợ sáng tạo nội dung (hình ảnh/video/bài viết) -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-paintbrush"></i></div>
+                    <div class="project-title">Bài 5: Sáng tạo nội dung số với AI</div>
+                    <div class="project-meta">Mục 5.4 - GenAI cho truyền thông</div>
+                    <p><strong>🎯 Mục tiêu:</strong> Sử dụng DALL·E 3 & ChatGPT để tạo ảnh minh họa + bài viết blog về chủ đề "Công nghệ xanh & AI".</p>
+                    <div class="demo-content">
+                        <strong>🖼️ Sản phẩm hoàn thiện:</strong><br>
+                        - Hình ảnh "Thành phố thông minh với năng lượng tái tạo" do AI tạo (prompt tối ưu).<br>
+                        - Bài viết 500 từ: "AI thúc đẩy phát triển bền vững" – chỉnh sửa từ nội dung AI.<br>
+                   
+                    </div>
+                    <div class="img-mock">
+                        <img src="https://picsum.photos/id/104/300/150" alt="AI minh họa" style="width:100%; border-radius: 12px; max-width: 100%;" onerror="this.src='https://picsum.photos/id/20/300/150'">
+                        <span style="font-size:12px;"></span>
+                    </div>
+                    <div>
+                        <a href="bao_cao_ung_dung_ai.md.pdf" class="btn-link" download; return false;"><i class="fas fa-newspaper"></i> Bài viết hoàn chỉnh</a>
+                        
+                    </div>
+                </div>
+
+                <!-- BÀI 6: Sử dụng AI có trách nhiệm trong học tập và nghiên cứu -->
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <div class="project-title">Bài 6: Nguyên tắc AI có trách nhiệm</div>
+                    <div class="project-meta">Mục 6.4 - Liêm chính học thuật số</div>
+                    <p><strong>🎯 Mục tiêu:</strong> Xây dựng bộ quy tắc cá nhân khi sử dụng AI trong học tập dựa trên các nghiên cứu đạo đức AI.</p>
+                    <div class="demo-content">
+                        <strong>📜 Bộ nguyên tắc của tôi (6 điều):</strong>
+                        <ul class="responsibility-list" style="margin-top: 8px;">
+                            <li><i class="fas fa-check-circle"></i> 1. Minh bạch: Luôn công khai khi sử dụng nội dung do AI sinh ra trong bài tập.</li>
+                            <li><i class="fas fa-check-circle"></i> 2. Kiểm chứng: Xác thực thông tin từ AI với nguồn học thuật uy tín.</li>
+                            <li><i class="fas fa-check-circle"></i> 3. Bảo vệ dữ liệu: Không nhập thông tin nhạy cảm/ riêng tư vào công cụ AI công khai.</li>
+                            <li><i class="fas fa-check-circle"></i> 4. Tránh thiên vị: Đánh giá kết quả AI để giảm thiểu định kiến giới/chủng tộc.</li>
+                            <li><i class="fas fa-check-circle"></i> 5. Trích dẫn đúng: Tham chiếu nguồn AI tương tự như tài liệu tham khảo.</li>
+                            <li><i class="fas fa-check-circle"></i> 6. Phát triển kỹ năng: Dùng AI như trợ lý, không thay thế tư duy phản biện.</li>
+                        </ul>
+                    </div>
+                    <div><a href="BÁO CÁO SỬ DỤNG AI CÓ TRÁCH NHIỆM TRONG HỌC TẬP VÀ NGHIÊN CỨU.pdf" class="btn-link" download; return false;"><i class="fas fa-file-alt"></i> Báo cáo phân tích</a></div>
+                </div>
+            </div>
+            <!-- Lưu ý thêm: các bài tập đều có minh chứng sản phẩm kỹ thuật số -->
+        </div>
+    </section>
+
+    <!-- TRANG TỔNG KẾT (Reflection) -->
+    <section id="reflection">
+        <div class="container">
+            <div class="section-title">📝 Tổng kết & Trải nghiệm</div>
+            <div class="reflection-box">
+                <i class="fas fa-quote-left" style="font-size: 2rem; color: #eab308; opacity: 0.6;"></i>
+                <h3 style="margin: 0.5rem 0 1rem 0;">Hành trình xây dựng Portfolio số</h3>
+                <p><strong>✅ Những gì đã hoàn thành:</strong> Tôi đã hệ thống lại 6 bài tập quan trọng từ thao tác file, tìm kiếm học thuật, tối ưu prompt, công cụ cộng tác, sáng tạo nội dung AI đến trách nhiệm AI. Mỗi bài đều được đính kèm sản phẩm số (PDF mô phỏng, hình ảnh, bảng biểu, liên kết minh họa). Portfolio này đáp ứng tiêu chí thiết kế gọn gàng, dễ đọc, và thể hiện rõ quy trình thực hiện từng kỹ năng.</p>
+                <p><strong>⚡ Thách thức gặp phải:</strong> Việc sắp xếp nội dung sao cho vừa đủ chi tiết nhưng không quá dài dòng; tích hợp các ảnh chụp màn hình thật vào web là khó khăn lúc đầu nhưng tôi đã dùng placeholder thông minh. Bên cạnh đó, cân bằng giữa việc sử dụng AI và giữ đúng liêm chính học thuật đòi hỏi suy nghĩ kỹ lưỡng khi xây dựng bộ nguyên tắc.</p>
+                <p><strong>📈 Bài học rút ra:</strong> Kỹ năng quản lý dự án số, kết hợp AI tạo sinh một cách sáng tạo và có trách nhiệm sẽ là lợi thế lớn trong học tập và nghề nghiệp. Portfolio không chỉ là nơi lưu trữ bài tập mà còn là "thương hiệu cá nhân" giúp tôi tự tin hơn khi ứng tuyển thực tập.</p>
+                <p><strong>🎯 Hướng phát triển:</strong> Trong tương lai tôi sẽ bổ sung thêm các project thực tế về phân tích dữ liệu, xây dựng chatbot, và tích hợp chứng chỉ kỹ năng số.</p>
+                <div style="margin-top: 20px; border-top: 1px dashed #fde68a; padding-top: 16px;">
+                    <i class="fas fa-heart" style="color:#ef4444;"></i> <em>Cảm ơn giảng viên đã tạo cơ hội để chúng em tổng hợp kiến thức một cách chuyên nghiệp.</em>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p><i class="far fa-copyright"></i> 2026 Đào Đức Khuê - Digital Portfolio | Nhập môn Công nghệ số & AI | Mọi minh chứng đều tuân thủ liêm chính học thuật</p>
+            </div>
+</footer>
+
+<!-- thông báo hoàn thiện portfolio -->
+</body>
+</html>
